@@ -1,0 +1,19 @@
+{
+  "name": "Booking Alerts",
+  "version": "1.0.0",
+  "description": "Booking alerts based on socket.io",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "socket io"
+  ],
+  "author": "joomla@deltastateonline.com",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.15.2",
+    "socket.io": "^2.0.4"
+  }
+}
