@@ -1,7 +1,13 @@
-var app = require('express')();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-var bodyParser = require('body-parser')
+const express =  require('express');
+const http = require('http');
+
+const Socket10 = require('socket.io');
+var bodyParser = require('body-parser');
+
+const app = express();
+const server = http.createServer(app);
+
+var io = new Socket10(server);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -16,8 +22,7 @@ app.get('/alerts', function(req, res){
  res.sendFile(__dirname + '/alerts.html');
 });
 
-app.post('/alert', function(req, res){
-	
+app.post('/alert', function(req, res){	
 	var alertObject  = req.body;	// already an object
 	var d = new Date();	
 	alertObject.recieved = d.toString();		
@@ -32,8 +37,7 @@ io.on('connection', function(socket){
   });
 });
 
-
 var port = process.env.PORT || 3000;
-http.listen(port, function(){  
+server.listen(port, function(){  
   console.log('Server running at http://127.0.0.1:' + port + '/');
 });
